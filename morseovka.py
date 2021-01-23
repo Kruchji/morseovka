@@ -1,11 +1,11 @@
 def zmor(a):
     if a in dictionary[0]:
         #Velice big brain řádek
-        #Najde index kódu ve slovníku a pak ho vyhledá ve slovníku slov (češtinářská rekurze??)
+        #Najde index kódu ve slovníku a pak ho vyhledá ve slovníku písmen
         return dictionary[1][dictionary[0].index(a)]
     else:
         #Velice důležitá část kódu - co nejvíce se vysmát člověku za to, že neumí zadat morseovku
-        exit("Neumíš morsevku LMAOOOO")
+        exit("Neumíš morsevku LMAOOOO - špatný symbol: " + a)
     
 #Na následujících 4 řádcích celý kód stojí - v žádném případě NEODSTRAŇOVAT!!
 print("Projekťák WOOOO WOOOO WOOOO")
@@ -14,12 +14,13 @@ print("Převodník, který by bez 3 lidí NEFUNGOVAL")
 print("zz")
 
 #WIP slovník
-dictionary = [[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..","----",".-.-","..–..","---.","..--",".----","..---","...--","....-",".....","-....","--...","---..","----.","-----","..--..","--..--",".-.-.-","-.-.-.","-..-.","-...-","-....-",".----.","-.--.","-.--.-",".-..-.","---...","..--.-",".-.-.",".--.-.","/"],
-              ["A",  "B",  "C",   "D",  "E","F",   "G",  "H",   "I", "J",   "K",  "L",   "M", "N", "O",  "P",   "Q",   "R",  "S",  "T","U",  "V",   "W",  "X",   "Y",   "Z",   "CH",  "Ä",   "Ë",    "Ö",   "Ü",   "1",    "2",    "3",    "4",    "5",    "6",    "7",    "8",    "9",    "0",    "?",     ",",     ".",     ";",     "/",    "=",    "-",     "'",     "(",    ")",     "\"",    ":",     "_",     "+",    "@",     " "]]
+dictionary = [[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..","----",".-.-","..–..","---.","..--",".----","..---","...--","....-",".....","-....","--...","---..","----.","-----","..--..","--..--",".-.-.-","-.-.-.","-..-.","-...-","-....-",".----.","-.--.","-.--.-",".-..-.","---...","..--.-",".-.-.",".--.-.","/",""],
+              ["A",  "B",  "C",   "D",  "E","F",   "G",  "H",   "I", "J",   "K",  "L",   "M", "N", "O",  "P",   "Q",   "R",  "S",  "T","U",  "V",   "W",  "X",   "Y",   "Z",   "CH",  "Ä",   "Ë",    "Ö",   "Ü",   "1",    "2",    "3",    "4",    "5",    "6",    "7",    "8",    "9",    "0",    "?",     ",",     ".",     ";",     "/",    "=",    "-",     "'",     "(",    ")",     "\"",    ":",     "_",     "+",    "@",     " "," "]]
 
-#TO DO: Nahradit pomlčky za spojovníky; rozdělit na jednotlivá písmena
+#TO DO: Nahradit pomlčky za spojovníky
 raw = input("Vložte morseovku k přeložení: ")
-text = raw.split(" ")
+sep = input("Vložte oddělovač písmen: ")
+text = raw.split(sep)
 
 #Využijeme znalostí zeměpisu k rozluštění morseovky (Outstanding move right here!)
 #Prostě to na každé písmeno aplikuje funkci zmor, která písmeno v morseovce nahradí reálným písmenem
