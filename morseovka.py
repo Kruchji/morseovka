@@ -1,8 +1,7 @@
 def zmor(a):
-    if a in dictionary[0]:
-        #Velice big brain řádek
-        #Najde index kódu ve slovníku a pak ho vyhledá ve slovníku písmen
-        return dictionary[1][dictionary[0].index(a)]
+    if a in dictionary2:
+        #Vrátí překlad ze slovníku - easy peasy
+        return dictionary2[a]
     else:
         #Velice důležitá část kódu - co nejvíce se vysmát člověku za to, že neumí zadat morseovku
         exit("Neumíš morsevku LMAOOOO - špatný symbol: " + a)
@@ -13,19 +12,19 @@ print("Zdravíčko elitní týme plný expertů na dané téma: Morseovka")
 print("Převodník, který by bez 3 lidí NEFUNGOVAL")
 print("zz")
 
-#WIP slovník
-#TO-DO: Předělat slovník z listu na dictionary (bude to přehlednější)
-dictionary = {"A":".-", "B":"-...", "C":"-.-.","D":"-..", "E":".","F":"..-.","G":"--.","H":"....","I":"..","J":".---","K":"-.-","L":".-..","M":"--","N":"-.","O":"---","P":".--.","Q":"--.-","R":".-.","S":"...","T":"-","U":"..-","V":"...-","W":".--","X":"-..-","Y":"-.--","Z":"--..",
+#WIP slovníky
+dictionary1 = {"A":".-", "B":"-...", "C":"-.-.","D":"-..", "E":".","F":"..-.","G":"--.","H":"....","I":"..","J":".---","K":"-.-","L":".-..","M":"--","N":"-.","O":"---","P":".--.","Q":"--.-","R":".-.","S":"...","T":"-","U":"..-","V":"...-","W":".--","X":"-..-","Y":"-.--","Z":"--..",
 "CH":"----","Ä":".-.-","Ë":"..–..","Ö":"---.","Ü":"..--","1":".----","2":"..---","3":"...--","4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.","0":"-----",
 "?":"..--..",",":"--..--",".":".-.-.-",";":"-.-.-.","/":"-..-.","=":"-...-","-":"-....-","'":".----.","(":"-.--.",")":"-.--.-","\"":".-..-.",":":"---...","_":"..--.-","+":".-.-.","@":".--.-."," ":"/"," ":"","!":"-.-.--"}
 
-ditionary2 = {".-":"A","-...":"B","-.-.":"C","-..":"D",".":"E","..-.":"F","--.":"G","....":"H","..":"I",".---":"J","-.-":"K",".-..":"L","--":"M","-.":"N","---":"O",".--.":"P","--.-":"Q",".-.":"R","...":"S","-":"T","..-":"U","...-":"V",".--":"W","-..-":"X","-.--":"Y","--..":"Z",
+dictionary2 = {".-":"A","-...":"B","-.-.":"C","-..":"D",".":"E","..-.":"F","--.":"G","....":"H","..":"I",".---":"J","-.-":"K",".-..":"L","--":"M","-.":"N","---":"O",".--.":"P","--.-":"Q",".-.":"R","...":"S","-":"T","..-":"U","...-":"V",".--":"W","-..-":"X","-.--":"Y","--..":"Z",
 "----":"CH",".-.-":"Ä","..–..":"Ë","---.":"Ö","..--":"Ü",".----":"1","..---":"2","...--":"3","....-":"4",".....":"5","-....":"6","--...":"7","---..":"8","----.":"9","-----":"0",
 "..--..":"?","--..--":",",".-.-.-":".","-.-.-.":";","-..-.":"/","-...-":"=","-....-":"-",".----.":"'","-.--.":"(","-.--.-":")",".-..-.":"\"","---...":":","..--.-":"_",".-.-.":"+",".--.-.":"@","/":" ","":" ","-.-.--":"!"}
+
 #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
 raw = input("Vložte morseovku k přeložení: ")
 sep = input("Vložte oddělovač písmen: ")
-#TO-DO: Upozornit uživatele, jaké oddělovače nemůže vložit (.-–−_·*)
+#TO-DO: Upozornit uživatele, jaké oddělovače nemůže vložit (.-–−_·*) a nesmí nechat prázdné (raw i sep)
 
 #Tohle hopefully zajistí větší kompatibilitu s jinými překladači (a nakonec to rozdělí na písmena)
 text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
