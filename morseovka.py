@@ -66,9 +66,19 @@ while True:
             soubor.close()
             text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
             res = map(mor, text)
-            print("".join(res))
-            break
-
+            r=("".join(res))
+            #jak chce uživatel svůj překlad dostat: poštou, holubem, e-mailem
+            resch=input("Váš překlad je připraven. Chcete ho vypsat do nového souboru: 'ns' nebo vám postačí ho vypsat zde: 'zde'")
+            #získá ho hned v konzoli
+            if resch =="zde":
+                print(r)
+                break
+            #budeme muset kvůli němu vytvořit celý nový soubor
+            elif resch =="ns":
+                f = open("preklad.txt", "w")
+                f.write(r)
+                break
+            
     #PŘEKLAD DOMOR
     elif vol == "do":
         raw = input("Vložte text k přeložení: ")
