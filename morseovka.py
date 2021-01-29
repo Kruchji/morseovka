@@ -43,7 +43,6 @@ while True:
             raw = input("Vložte morseovku k přeložení: ")
             print("Abychom vaší šifru mohli dekodovat musíte vložit oddělovač písmen. Oddělovč nesmí být: . - – − _ · *")
             sep = input("Vložte oddělovač písmen: ")
-            #TO-DO: Upozornit uživatele, jaké oddělovače nemůže vložit (.-–−_·*)
             #Tohle hopefully zajistí větší kompatibilitu s jinými překladači (a nakonec to rozdělí na písmena)
             text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
             #Využijeme znalostí zeměpisu k rozluštění morseovky (Outstanding move right here!)
@@ -58,9 +57,10 @@ while True:
             txt = input("Vložte název a cestu k souboru:")
             #soubor si necháme bez vašeho povolení otevřít
             soubor = open(txt, "r")
+            #TO-DO: při čtení váceřádků error, závest odstranění neviditelného enteru
             #a teď si ho nahráváme (PS. další krok nahrání na internet)
             raw=(soubor.read())
-            #TO už známe
+            #to už známe
             print("Abychom vaší šifru mohli dekodovat musíte vložit oddělovač písmen. Oddělovč nesmí být: . - – − _ · *")
             sep = input("Vložte oddělovač písmen: ")
             soubor.close()
