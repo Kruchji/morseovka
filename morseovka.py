@@ -17,8 +17,7 @@ def prekladZ(raw):
     #Prostě to na každé písmeno aplikuje funkci zmor, která písmeno v morseovce nahradí reálným písmenem
     res = map(mor, text)
     #Lepší způsob na převedení listu do stringu jsem nenašel, takže here we go
-    print("".join(res))
-    return "".join(res)
+    resultToFile("".join(res))
 
 def cteniSouboru():
     #tímto krokem nahlédneme do vašeho počítače
@@ -36,9 +35,9 @@ def prekladD(raw):
     text = raw.upper()
     #TO VÍME, TO ZNÁME
     res = map(mor, text)
+    resultToFile("".join(res))
     #TO VÍME, TO ZNÁME
     print("".join(res))
-    return "".join(res)
 
 def getSep():
     #zjistíme, čím si uživatel přeje oddělovat znaky
@@ -46,6 +45,17 @@ def getSep():
     sep = input("Vložte oddělovač písmen: ")
     return sep
 
+def resultToFile(r):
+    #jak chce uživatel svůj překlad dostat: poštou, holubem, e-mailem
+    resch=input("Váš překlad je připraven. Chcete ho vypsat do nového souboru: 'ns' nebo vám postačí ho vypsat zde: 'zde'")
+    #získá ho hned v konzoli
+    if resch =="zde":
+        print(r)
+    #budeme muset kvůli němu vytvořit celý nový soubor
+    elif resch =="ns":
+        f = open("preklad.txt", "w")
+        f.write(r)
+        f.close()
         
 #Na následujících 4 řádcích celý kód stojí - v žádném případě NEODSTRAŇOVAT!!
 print("Projekťák WOOOO WOOOO WOOOO")
