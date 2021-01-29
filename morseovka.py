@@ -35,19 +35,39 @@ while True:
 
     #PŘEKLAD ZMOR
     if vol == "z":
-        #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
-        raw = input("Vložte morseovku k přeložení: ")
-        print("Abychom vaší šifru mohli dekodovat musíte vložit oddělovač písmen. Oddělovč nesmí být: . - – − _ · *")
-        sep = input("Vložte oddělovač písmen: ")
-        #TO-DO: Upozornit uživatele, jaké oddělovače nemůže vložit (.-–−_·*)
-        #Tohle hopefully zajistí větší kompatibilitu s jinými překladači (a nakonec to rozdělí na písmena)
-        text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
-        #Využijeme znalostí zeměpisu k rozluštění morseovky (Outstanding move right here!)
-        #Prostě to na každé písmeno aplikuje funkci zmor, která písmeno v morseovce nahradí reálným písmenem
-        res = map(mor, text)
-        #Lepší způsob na převedení listu do stringu jsem nenašel, takže here we go
-        print("".join(res))
-        break
+        #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .dxd
+        roz=input("Budete chtít nahrát kód ze souboru (.txt) - napiš: 's', pokud budeš kód napsat - napiš: 'n'")
+        #rozhodl se používat klávesnici
+        if roz == "n":
+            #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
+            raw = input("Vložte morseovku k přeložení: ")
+            print("Abychom vaší šifru mohli dekodovat musíte vložit oddělovač písmen. Oddělovč nesmí být: . - – − _ · *")
+            sep = input("Vložte oddělovač písmen: ")
+            #TO-DO: Upozornit uživatele, jaké oddělovače nemůže vložit (.-–−_·*)
+            #Tohle hopefully zajistí větší kompatibilitu s jinými překladači (a nakonec to rozdělí na písmena)
+            text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
+            #Využijeme znalostí zeměpisu k rozluštění morseovky (Outstanding move right here!)
+            #Prostě to na každé písmeno aplikuje funkci zmor, která písmeno v morseovce nahradí reálným písmenem
+            res = map(mor, text)
+            #Lepší způsob na převedení listu do stringu jsem nenašel, takže here we go
+            print("".join(res))
+            break
+        #rozhodl se pro jednodušší cestu
+        elif roz == "s":
+            #tímto krokem nahlédneme do vašeho počítače
+            txt = input("Vložte název a cestu k souboru:")
+            #soubor si necháme bez vašeho povolení otevřít
+            soubor = open(txt, "r")
+            #a teď si ho nahráváme (PS. další krok nahrání na internet)
+            raw=(soubor.read())
+            #TO už známe
+            print("Abychom vaší šifru mohli dekodovat musíte vložit oddělovač písmen. Oddělovč nesmí být: . - – − _ · *")
+            sep = input("Vložte oddělovač písmen: ")
+            soubor.close()
+            text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
+            res = map(mor, text)
+            print("".join(res))
+            break
 
     #PŘEKLAD DOMOR
     elif vol == "do":
