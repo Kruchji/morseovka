@@ -18,6 +18,7 @@ def prekladZ(raw):
     res = map(mor, text)
     #Lepší způsob na převedení listu do stringu jsem nenašel, takže here we go
     print("".join(res))
+    return "".join(res)
 
 def cteniSouboru():
     #tímto krokem nahlédneme do vašeho počítače
@@ -37,6 +38,7 @@ def prekladD(raw):
     res = map(mor, text)
     #TO VÍME, TO ZNÁME
     print("".join(res))
+    return "".join(res)
 
 def getSep():
     #zjistíme, čím si uživatel přeje oddělovat znaky
