@@ -68,12 +68,12 @@ print("Zvolte zda budete chtít překládat do moseovky/ z morseovky:")
 
 #Tohle uživatele donutí strefit se na klávesnici
 while True:
-    vol=input("Pro překlad do morseovky napiš: 'do', pro překlad z morseovky napiš 'z': ")
+    vol=input("Pro překlad do morseovky napiš: 'do', pro překlad z morseovky napiš: 'z': ")
 
     #PŘEKLAD ZMOR
     if vol == "z":
         #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .dxd
-        roz=input("Budete chtít nahrát kód ze souboru (.txt) - napiš: 's', pokud budeš chtít kód napsat ručně - napiš: 'n'")
+        roz=input("Budete chtít nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'n': ")
         #rozhodl se používat klávesnici
         if roz == "n":
             #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
@@ -91,7 +91,7 @@ while True:
 
     #PŘEKLAD DOMOR
     elif vol == "do":
-        roz=input("Budete chtít nahrát kód ze souboru (.txt) - napiš: 's', pokud budeš chtít kód napsat ručně - napiš: 'n'")
+        roz=input("Budete chtít nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'n': ")
         if roz == "n":
             sep = getSep()
             raw = input("Vložte text k přeložení: ")            
