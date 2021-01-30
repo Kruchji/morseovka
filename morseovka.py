@@ -1,5 +1,5 @@
 def mor(a):
-    #BIG BRAIN MOMEENT WARNING
+    #BIG BRAIN MOMENT WARNING
     #Pokud zjistíme, že bude následovat nový řádek, rozdělíme string dle něj
     #A pak použijeme funkci mor uprostřed funkce mor !!!
     #Nakonec převedené části spojíme s novými řádky mezi nimi
@@ -28,9 +28,9 @@ def prekladZ(raw):
     #Tohle hopefully zajistí větší kompatibilitu s jinými překladači (a nakonec to rozdělí na písmena)
     text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
     #Využijeme znalostí zeměpisu k rozluštění morseovky (Outstanding move right here!)
-    #Prostě to na každé písmeno aplikuje funkci zmor, která písmeno v morseovce nahradí reálným písmenem
+    #Prostě to na každé písmeno aplikuje funkci mor, která písmeno v morseovce nahradí reálným písmenem
     res = map(mor, text)
-    #Lepší způsob na převedení listu do stringu jsem nenašel, takže here we go
+    #Lepší způsob na převedení listu/mapy do stringu jsem nenašel, takže here we go
     resultToFile("".join(res))
 
 def cteniSouboru():
@@ -53,7 +53,7 @@ def prekladD(raw):
     #Odebere oddělovač úplně na konci (na funkcionalitě to nic nezměnilo, ale hrozně mě tam štval)
     if final[-1:] == sep:
         final = final[:-1]
-    #Poslat výsledek souborové funkce
+    #Poslat výsledek souborové funkci
     resultToFile(final)
 
 def getSep():
@@ -64,12 +64,12 @@ def getSep():
 
 def resultToFile(r):
     #jak chce uživatel svůj překlad dostat: poštou, holubem, e-mailem
-    resch=input("Váš překlad je připraven. Chcete ho vypsat do nového souboru: 'ns' nebo vám postačí ho vypsat zde: 'zde'? ")
+    resch = input("Váš překlad je připraven. Chcete ho vypsat do nového souboru ('ns') nebo vám postačí ho vypsat zde ('zde')? ")
     #získá ho hned v konzoli
-    if resch =="zde":
+    if resch == "zde":
         print(r)
-    #budeme muset kvůli němu vytvořit celý nový soubor
-    elif resch =="ns":
+    #budeme muset kvůli němu vytvořit celý nový soubor (Dnešní mládeži abyste všechno naservírovali na zlatém podnose!)
+    elif resch == "ns":
         f = open("preklad.txt", "w")
         f.write(r)
         f.close()
@@ -91,17 +91,16 @@ dictionary2 = {".-":"A","-...":"B","-.-.":"C","-..":"D",".":"E","..-.":"F","--."
 "----":"CH",".-.-":"Ä","..–..":"Ë","---.":"Ö","..--":"Ü",".----":"1","..---":"2","...--":"3","....-":"4",".....":"5","-....":"6","--...":"7","---..":"8","----.":"9","-----":"0",
 "..--..":"?","--..--":",",".-.-.-":".","-.-.-.":";","-..-.":"/","-...-":"=","-....-":"-",".----.":"'","-.--.":"(","-.--.-":")",".-..-.":"\"","---...":":","..--.-":"_",".-.-.":"+",".--.-.":"@","/":" ","":"","-.-.--":"!","\n":"\n"}
 
-#uživatele si necháme zvolit zda chce dekodovat či kodovat (nejsme jako ti, co vám ani nedají na výběr)
-print("Zvolte zda budete chtít překládat do moseovky/ z morseovky:")
 
 #Tohle uživatele donutí strefit se na klávesnici
 while True:
-    vol=input("Pro překlad do morseovky napiš: 'do', pro překlad z morseovky napiš: 'z': ")
+    #uživatele si necháme zvolit zda chce dekodovat či kodovat (nejsme jako ti, co vám ani nedají na výběr)
+    vol = input("Pro překlad do morseovky napište: 'do', pro překlad z morseovky napište: 'z': ")
 
     #PŘEKLAD ZMOR
     if vol == "z":
-        #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .dxd
-        roz=input("Budete chtít nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'n': ")
+        #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .txt
+        roz = input("Chcete-li nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'n': ")
         #rozhodl se používat klávesnici
         if roz == "n":
             #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
@@ -119,7 +118,7 @@ while True:
 
     #PŘEKLAD DOMOR
     elif vol == "do":
-        roz=input("Budete chtít nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'n': ")
+        roz=input("Chcete-li nahrát text ze souboru (.txt) - napište: 's', pokud budete chtít text napsat ručně - napište: 'n': ")
         if roz == "n":
             sep = getSep()
             raw = input("Vložte text k přeložení: ")            
@@ -127,7 +126,7 @@ while True:
             break
         elif roz == "s":
             sep = getSep()
-            raw=cteniSouboru()            
+            raw = cteniSouboru()            
             prekladD(raw)
             break
             
