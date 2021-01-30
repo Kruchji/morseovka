@@ -24,7 +24,7 @@ def mor(a):
         #Velice důležitá část kódu - co nejvíce se vysmát člověku za to, že neumí zadat morseovku
         exit("Neumíš morsevku LMAOOOO - špatný symbol: " + a)
 
-def prekladZ(raw):
+def prekladZ():
     #Tohle hopefully zajistí větší kompatibilitu s jinými překladači (a nakonec to rozdělí na písmena)
     text = raw.replace("–","-").replace("−","-").replace("_","-").replace("·",".").replace("*",".").split(sep)
     #Využijeme znalostí zeměpisu k rozluštění morseovky (Outstanding move right here!)
@@ -44,7 +44,7 @@ def cteniSouboru():
     soubor.close()
     return raw
 
-def prekladD(raw):
+def prekladD():
     #MILUJU CAPS-LOCK
     text = raw.upper()
     #TO VÍME, TO ZNÁME
@@ -106,14 +106,14 @@ while True:
             #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
             sep = getSep()
             raw = input("Vložte morseovku k přeložení: ")            
-            prekladZ(raw)
+            prekladZ()
             break
         #rozhodl se pro jednodušší cestu
         elif roz == "s":
             #TO už známe    
             sep = getSep()
             raw = cteniSouboru()                    
-            prekladZ(raw)
+            prekladZ()
             break
 
     #PŘEKLAD DOMOR
@@ -122,12 +122,12 @@ while True:
         if roz == "n":
             sep = getSep()
             raw = input("Vložte text k přeložení: ")            
-            prekladD(raw)
+            prekladD()
             break
         elif roz == "s":
             sep = getSep()
             raw = cteniSouboru()            
-            prekladD(raw)
+            prekladD()
             break
             
     #TI CO CHTĚJÍ BÝT VÝJIMEČNÍ
