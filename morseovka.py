@@ -1,8 +1,22 @@
 def mor(a):
+    #BIG BRAIN MOMEENT WARNING
+    #Pokud zjistíme, že bude následovat nový řádek, rozdělíme string dle něj
+    #A pak použijeme funkci mor uprostřed funkce mor !!!
+    #Nakonec převedené části spojíme s novými řádky mezi nimi
+    #Thank you for attending my Ted Talk
+    if "\n" in a and vol == "z":
+        noNewLinesText = a.split("\n")
+        noNewLinesRes = map(mor, noNewLinesText)
+        return "\n".join(noNewLinesRes)
+
     if a in dictionary1 or a in dictionary2:
         if vol == "do":
-            #Přeloží znak do morseovštiny - VERY HARD - a přídá custom oddělovač (weirdchamp pokud to není mezera)
-            return dictionary1[a] + sep
+            #Pokud nový řádek, pak nový řádek, že ano?
+            if a == "\n":
+                return "\n"
+            else:
+                #Přeloží znak do morseovštiny - VERY HARD - a přídá custom oddělovač (WeirdChamp pokud to není mezera)
+                return dictionary1[a] + sep
         elif vol == "z":
             #Vrátí překlad ze slovníku - easy peasy
             return dictionary2[a]
@@ -21,7 +35,7 @@ def prekladZ(raw):
 
 def cteniSouboru():
     #tímto krokem nahlédneme do vašeho počítače
-    txt = input("Vložte název a cestu k souboru:")
+    txt = input("Vložte název a cestu k souboru: ")
     #soubor si necháme bez vašeho povolení otevřít
     soubor = open(txt, "r")
     #a teď si ho nahráváme (PS. další krok nahrání na internet)
@@ -35,19 +49,22 @@ def prekladD(raw):
     text = raw.upper()
     #TO VÍME, TO ZNÁME
     res = map(mor, text)
-    resultToFile("".join(res))
-    #TO VÍME, TO ZNÁME
-    print("".join(res))
+    final = "".join(res)
+    #Odebere oddělovač úplně na konci (na funkcionalitě to nic nezměnilo, ale hrozně mě tam štval)
+    if final[-1:] == sep:
+        final = final[:-1]
+    #Poslat výsledek souborové funkce
+    resultToFile(final)
 
 def getSep():
     #zjistíme, čím si uživatel přeje oddělovat znaky
-    print("Abychom vaší šifru mohli dekodovat musíte vložit oddělovač písmen. Oddělovč nesmí být: . - – − _ · *")
+    print("Abychom vaší šifru mohli dekódovat musíte vložit oddělovač písmen. Oddělovač nesmí být: . - – − _ · *")
     sep = input("Vložte oddělovač písmen: ")
     return sep
 
 def resultToFile(r):
     #jak chce uživatel svůj překlad dostat: poštou, holubem, e-mailem
-    resch=input("Váš překlad je připraven. Chcete ho vypsat do nového souboru: 'ns' nebo vám postačí ho vypsat zde: 'zde'")
+    resch=input("Váš překlad je připraven. Chcete ho vypsat do nového souboru: 'ns' nebo vám postačí ho vypsat zde: 'zde'? ")
     #získá ho hned v konzoli
     if resch =="zde":
         print(r)
@@ -56,6 +73,7 @@ def resultToFile(r):
         f = open("preklad.txt", "w")
         f.write(r)
         f.close()
+        print("Soubor preklad.txt vytvořen.")
         
 #Na následujících 4 řádcích celý kód stojí - v žádném případě NEODSTRAŇOVAT!!
 print("Projekťák WOOOO WOOOO WOOOO")
@@ -67,11 +85,11 @@ print("zz")
 dictionary1 = {"A":".-", "B":"-...", "C":"-.-.","D":"-..", "E":".","F":"..-.","G":"--.","H":"....","I":"..","J":".---","K":"-.-","L":".-..","M":"--","N":"-.","O":"---","P":".--.","Q":"--.-","R":".-.","S":"...","T":"-","U":"..-","V":"...-","W":".--","X":"-..-","Y":"-.--","Z":"--..",
 "CH":"----","Ä":".-.-","Ë":"..–..","Ö":"---.","Ü":"..--","1":".----","2":"..---","3":"...--","4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.","0":"-----",
 "?":"..--..",",":"--..--",".":".-.-.-",";":"-.-.-.","/":"-..-.","=":"-...-","-":"-....-","'":".----.","(":"-.--.",")":"-.--.-","\"":".-..-.",":":"---...","_":"..--.-","+":".-.-.","@":".--.-."," ":"/","!":"-.-.--",
-"Á":".-","É":".","Ě":".","Í":"..","Ó":"---","Ú":"..-","Ů":"..-","Ý":"-.--","Č":"-.-.","Ř":".-.","Š":"...","Ž":"--..","Ť":"-"}
+"Á":".-","Â":".-","É":".","Ě":".","Ę":".","Í":"..","Î":"..","Ó":"---","Ő":"---","Ô":"---","Ú":"..-","Ů":"..-","Ű":"..-","Ý":"-.--","Č":"-.-.","Ç":"-.-.","Ć":"-.-.","Ř":".-.","Š":"...","Ś":"...","Ž":"--..","Ź":"--..","Ť":"-","Ň":"-.","Ń":"-.","Ľ":".-..","Ĺ":".-..","Ł":".-..","Ď":"-..","\n":"\n"}
 
 dictionary2 = {".-":"A","-...":"B","-.-.":"C","-..":"D",".":"E","..-.":"F","--.":"G","....":"H","..":"I",".---":"J","-.-":"K",".-..":"L","--":"M","-.":"N","---":"O",".--.":"P","--.-":"Q",".-.":"R","...":"S","-":"T","..-":"U","...-":"V",".--":"W","-..-":"X","-.--":"Y","--..":"Z",
 "----":"CH",".-.-":"Ä","..–..":"Ë","---.":"Ö","..--":"Ü",".----":"1","..---":"2","...--":"3","....-":"4",".....":"5","-....":"6","--...":"7","---..":"8","----.":"9","-----":"0",
-"..--..":"?","--..--":",",".-.-.-":".","-.-.-.":";","-..-.":"/","-...-":"=","-....-":"-",".----.":"'","-.--.":"(","-.--.-":")",".-..-.":"\"","---...":":","..--.-":"_",".-.-.":"+",".--.-.":"@","/":" ","":" ","-.-.--":"!"}
+"..--..":"?","--..--":",",".-.-.-":".","-.-.-.":";","-..-.":"/","-...-":"=","-....-":"-",".----.":"'","-.--.":"(","-.--.-":")",".-..-.":"\"","---...":":","..--.-":"_",".-.-.":"+",".--.-.":"@","/":" ","":"","-.-.--":"!","\n":"\n"}
 
 #uživatele si necháme zvolit zda chce dekodovat či kodovat (nejsme jako ti, co vám ani nedají na výběr)
 print("Zvolte zda budete chtít překládat do moseovky/ z morseovky:")
