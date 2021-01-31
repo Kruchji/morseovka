@@ -99,7 +99,7 @@ while True:
 
     #PŘEKLAD ZMOR
     if vol == "z":
-        #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .txt
+        #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .dxd
         roz = input("Chcete-li nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'n': ")
         #rozhodl se používat klávesnici
         if roz == "n":
