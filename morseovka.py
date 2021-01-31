@@ -5,8 +5,21 @@ def mor(a):
     #Nakonec převedené části spojíme s novými řádky mezi nimi
     #Thank you for attending my Ted Talk
     if "\n" in a and vol == "z":
+        global noNewLinesText
+        global noNewLinesRes
         noNewLinesText = a.split("\n")
-        noNewLinesRes = map(mor, noNewLinesText)
+        noNewLinesRes = list(map(mor, noNewLinesText))
+        #Podíváme se, jestli poslední znak má být mezera
+        if noNewLinesText[len(noNewLinesText)-1] == "" or noNewLinesText[len(noNewLinesText)-1] == "/":
+            #Zničí všechny mezery
+            spaceTerminator()
+            #Protože poslední mezera má být reálná, tak ji zase vrátíme
+            noNewLinesRes[len(noNewLinesRes)-1] = " "
+        else:
+            #ZNIČIT KRTKA
+            spaceTerminator()
+
+        #Vrátíme nové řádky
         return "\n".join(noNewLinesRes)
 
     if a in dictionary1 or a in dictionary2:
@@ -58,7 +71,7 @@ def prekladD():
 
 def getSep():
     #zjistíme, čím si uživatel přeje oddělovat znaky
-    print("Abychom vaší šifru mohli dekódovat musíte vložit oddělovač písmen. Oddělovač nesmí být: . - – − _ · *")
+    print("Abychom vaší šifru mohli dekódovat musíte vložit oddělovač písmen. Oddělovač nesmí být: . - – − _ · * /")
     sep = input("Vložte oddělovač písmen: ")
     return sep
 
@@ -74,10 +87,17 @@ def resultToFile(r):
         f.write(r)
         f.close()
         print("Soubor preklad.txt vytvořen.")
-        
+
+def spaceTerminator():
+    #Nesahat na to, prostě to funguje - vytvoří list indexů mezer
+    indices = [i for i, x in enumerate(noNewLinesRes) if x == " "]
+    #Nahradí všechny mezery nicem
+    for item in indices:
+        noNewLinesRes[item] = ""
+
 #Na následujících 4 řádcích celý kód stojí - v žádném případě NEODSTRAŇOVAT!!
 print("Projekťák WOOOO WOOOO WOOOO")
-print("Zdravíčko elitní týme plný expertů na dané téma: Morseovka")
+print("GymčesCode = Too easy! No points!")
 print("Převodník, který by bez 3 lidí NEFUNGOVAL")
 print("zz")
 
@@ -88,8 +108,8 @@ dictionary1 = {"A":".-", "B":"-...", "C":"-.-.","D":"-..", "E":".","F":"..-.","G
 "Á":".-","Â":".-","É":".","Ě":".","Ę":".","Í":"..","Î":"..","Ó":"---","Ő":"---","Ô":"---","Ú":"..-","Ů":"..-","Ű":"..-","Ý":"-.--","Č":"-.-.","Ç":"-.-.","Ć":"-.-.","Ř":".-.","Š":"...","Ś":"...","Ž":"--..","Ź":"--..","Ť":"-","Ň":"-.","Ń":"-.","Ľ":".-..","Ĺ":".-..","Ł":".-..","Ď":"-..","\n":"\n"}
 
 dictionary2 = {".-":"A","-...":"B","-.-.":"C","-..":"D",".":"E","..-.":"F","--.":"G","....":"H","..":"I",".---":"J","-.-":"K",".-..":"L","--":"M","-.":"N","---":"O",".--.":"P","--.-":"Q",".-.":"R","...":"S","-":"T","..-":"U","...-":"V",".--":"W","-..-":"X","-.--":"Y","--..":"Z",
-"----":"CH",".-.-":"Ä","..–..":"Ë","---.":"Ö","..--":"Ü",".----":"1","..---":"2","...--":"3","....-":"4",".....":"5","-....":"6","--...":"7","---..":"8","----.":"9","-----":"0",
-"..--..":"?","--..--":",",".-.-.-":".","-.-.-.":";","-..-.":"/","-...-":"=","-....-":"-",".----.":"'","-.--.":"(","-.--.-":")",".-..-.":"\"","---...":":","..--.-":"_",".-.-.":"+",".--.-.":"@","/":" ","":"","-.-.--":"!","\n":"\n"}
+"----":"CH",".-.-":"Ä","..-..":"Ë","---.":"Ö","..--":"Ü",".----":"1","..---":"2","...--":"3","....-":"4",".....":"5","-....":"6","--...":"7","---..":"8","----.":"9","-----":"0",
+"..--..":"?","--..--":",",".-.-.-":".","-.-.-.":";","-..-.":"/","-...-":"=","-....-":"-",".----.":"'","-.--.":"(","-.--.-":")",".-..-.":"\"","---...":":","..--.-":"_",".-.-.":"+",".--.-.":"@","/":" ","":" ","-.-.--":"!","\n":"\n"}
 
 
 #Tohle uživatele donutí strefit se na klávesnici
@@ -118,7 +138,7 @@ while True:
 
     #PŘEKLAD DOMOR
     elif vol == "do":
-        roz=input("Chcete-li nahrát text ze souboru (.txt) - napište: 's', pokud budete chtít text napsat ručně - napište: 'n': ")
+        roz = input("Chcete-li nahrát text ze souboru (.txt) - napište: 's', pokud budete chtít text napsat ručně - napište: 'n': ")
         if roz == "n":
             sep = getSep()
             raw = input("Vložte text k přeložení: ")            
