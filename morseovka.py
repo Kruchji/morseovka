@@ -1,3 +1,5 @@
+import os.path
+
 def mor(a):
     #BIG BRAIN MOMENT WARNING
     #Pokud zjistíme, že bude následovat nový řádek, rozdělíme string dle něj
@@ -47,8 +49,16 @@ def prekladZ():
     resultToFile("".join(res))
 
 def cteniSouboru():
-    #tímto krokem nahlédneme do vašeho počítače
-    txt = input("Vložte název a cestu k souboru: ")
+    while True:
+        #tímto krokem nahlédneme do vašeho počítače
+        txt = input("Vložte název a cestu k souboru (.txt): ")
+        if txt[-4:] == ".txt":
+            if os.path.isfile(txt):
+                break
+            else:
+                print("Tento soubor neexistuje!!!")
+        else:
+            print("Vkládejte pouze soubory ve formátu .txt!!!")
     #soubor si necháme bez vašeho povolení otevřít
     soubor = open(txt, "r")
     #a teď si ho nahráváme (PS. další krok nahrání na internet)
@@ -72,21 +82,36 @@ def prekladD():
 def getSep():
     #zjistíme, čím si uživatel přeje oddělovat znaky
     print("Abychom vaší šifru mohli dekódovat musíte vložit oddělovač písmen. Oddělovač nesmí být: . - – − _ · * /")
-    sep = input("Vložte oddělovač písmen: ")
+    blocked = [".","-","–","−","_","·","*","/"]
+    while True:
+        sep = input("Vložte oddělovač písmen: ")
+        blockedBool = False
+        for operator in blocked:
+            if sep == operator:
+                blockedBool = True
+        if blockedBool == False:
+            break
+        else:
+            print("Zadali jste zakázaný oddělovač!!! (. - – − _ · * /)")
     return sep
 
 def resultToFile(r):
-    #jak chce uživatel svůj překlad dostat: poštou, holubem, e-mailem
-    resch = input("Váš překlad je připraven. Chcete ho vypsat do nového souboru ('ns') nebo vám postačí ho vypsat zde ('zde')? ")
-    #získá ho hned v konzoli
-    if resch == "zde":
-        print(r)
-    #budeme muset kvůli němu vytvořit celý nový soubor (Dnešní mládeži abyste všechno naservírovali na zlatém podnose!)
-    elif resch == "ns":
-        f = open("preklad.txt", "w")
-        f.write(r)
-        f.close()
-        print("Soubor preklad.txt vytvořen.")
+    while True:
+        #jak chce uživatel svůj překlad dostat: poštou, holubem, e-mailem
+        resch = input("Váš překlad je připraven. Chcete ho vypsat do nového souboru ('ns') nebo vám postačí ho vypsat zde ('zde')? ")
+        #získá ho hned v konzoli
+        if resch == "zde":
+            print(r)
+            break
+        #budeme muset kvůli němu vytvořit celý nový soubor (Dnešní mládeži abyste všechno naservírovali na zlatém podnose!)
+        elif resch == "ns":
+            f = open("preklad.txt", "w")
+            f.write(r)
+            f.close()
+            print("Soubor preklad.txt vytvořen.")
+            break
+        else:
+            print("Zadali jste špatnou volbu!!!")
 
 def spaceTerminator():
     #Nesahat na to, prostě to funguje - vytvoří list indexů mezer
@@ -119,36 +144,44 @@ while True:
 
     #PŘEKLAD ZMOR
     if vol == "z":
-        #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .dxd
-        roz = input("Chcete-li nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'n': ")
-        #rozhodl se používat klávesnici
-        if roz == "n":
-            #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
-            sep = getSep()
-            raw = input("Vložte morseovku k přeložení: ")            
-            prekladZ()
-            break
-        #rozhodl se pro jednodušší cestu
-        elif roz == "s":
-            #TO už známe    
-            sep = getSep()
-            raw = cteniSouboru()                    
-            prekladZ()
-            break
+        while True:
+            #opět necháme uživatele rozhodnout - může dokonce nahrát soubor z .dxd
+            roz = input("Chcete-li nahrát kód ze souboru (.txt) - napište: 's', pokud budete chtít kód napsat ručně - napište: 'r': ")
+            #rozhodl se používat klávesnici
+            if roz == "r":
+                #Pullneme klasický Facebook move, kdy z uživatelů vytáhneme všechna jejich data
+                sep = getSep()
+                raw = input("Vložte morseovku k přeložení: ")            
+                prekladZ()
+                break
+            #rozhodl se pro jednodušší cestu
+            elif roz == "s":
+                #TO už známe    
+                sep = getSep()
+                raw = cteniSouboru()                    
+                prekladZ()
+                break
+            else:
+                print("Zadali jste špatnou volbu!!!")
+        break
 
     #PŘEKLAD DOMOR
     elif vol == "do":
-        roz = input("Chcete-li nahrát text ze souboru (.txt) - napište: 's', pokud budete chtít text napsat ručně - napište: 'n': ")
-        if roz == "n":
-            sep = getSep()
-            raw = input("Vložte text k přeložení: ")            
-            prekladD()
-            break
-        elif roz == "s":
-            sep = getSep()
-            raw = cteniSouboru()            
-            prekladD()
-            break
+        while True:
+            roz = input("Chcete-li nahrát text ze souboru (.txt) - napište: 's', pokud budete chtít text napsat ručně - napište: 'r': ")
+            if roz == "r":
+                sep = getSep()
+                raw = input("Vložte text k přeložení: ")            
+                prekladD()
+                break
+            elif roz == "s":
+                sep = getSep()
+                raw = cteniSouboru()            
+                prekladD()
+                break
+            else:
+                print("Zadali jste špatnou volbu!!!")
+        break
             
     #TI CO CHTĚJÍ BÝT VÝJIMEČNÍ
     else:
