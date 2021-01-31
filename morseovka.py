@@ -120,6 +120,21 @@ def spaceTerminator():
     for item in indices:
         noNewLinesRes[item] = ""
 
+def goAgain():
+    while True:
+        #Tak děti, kdo chce jet znovu?
+        ans = input("Chcete dále překládat? (a/n): ")
+        #Here we go again!
+        if ans == "a":
+            break
+        #:(
+        elif ans == "n":
+            global repeat
+            repeat = False
+            break
+        else:
+            print("Zadali jste špatnou volbu!!!")
+
 #Na následujících 4 řádcích celý kód stojí - v žádném případě NEODSTRAŇOVAT!!
 print("Projekťák WOOOO WOOOO WOOOO")
 print("GymčesCode = Too easy! No points!")
@@ -136,9 +151,9 @@ dictionary2 = {".-":"A","-...":"B","-.-.":"C","-..":"D",".":"E","..-.":"F","--."
 "----":"CH",".-.-":"Ä","..-..":"Ë","---.":"Ö","..--":"Ü",".----":"1","..---":"2","...--":"3","....-":"4",".....":"5","-....":"6","--...":"7","---..":"8","----.":"9","-----":"0",
 "..--..":"?","--..--":",",".-.-.-":".","-.-.-.":";","-..-.":"/","-...-":"=","-....-":"-",".----.":"'","-.--.":"(","-.--.-":")",".-..-.":"\"","---...":":","..--.-":"_",".-.-.":"+",".--.-.":"@","/":" ","":" ","-.-.--":"!","\n":"\n"}
 
-
+repeat = True
 #Tohle uživatele donutí strefit se na klávesnici
-while True:
+while repeat:
     #uživatele si necháme zvolit zda chce dekodovat či kodovat (nejsme jako ti, co vám ani nedají na výběr)
     vol = input("Pro překlad do morseovky napište: 'do', pro překlad z morseovky napište: 'z': ")
 
@@ -163,7 +178,7 @@ while True:
                 break
             else:
                 print("Zadali jste špatnou volbu!!!")
-        break
+        goAgain()
 
     #PŘEKLAD DOMOR
     elif vol == "do":
@@ -181,7 +196,7 @@ while True:
                 break
             else:
                 print("Zadali jste špatnou volbu!!!")
-        break
+        goAgain()
             
     #TI CO CHTĚJÍ BÝT VÝJIMEČNÍ
     else:
